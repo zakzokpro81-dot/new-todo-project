@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import "./ListFooter.css";
-export function ListFooter({ addTask, listId }) {
+export function ListFooter({ addTask, listId, tasks }) {
   const [isClick, setIsClick] = useState(false);
   const [taskTitle, setTaskTitle] = useState("");
   const [noTask, setNoTask] = useState("");
@@ -18,7 +18,8 @@ export function ListFooter({ addTask, listId }) {
       let newTask = {
         id: crypto.randomUUID(),
         name: taskTitle,
-        state: false,
+        isCompleted: false,
+        order: tasks.length,
       };
       addTask(listId, newTask);
       setTaskTitle("");
@@ -33,6 +34,7 @@ export function ListFooter({ addTask, listId }) {
     setIsClick((prev) => !prev);
     setNoTask("");
   }
+
   return (
     <div className="footer-container">
       {isClick && (

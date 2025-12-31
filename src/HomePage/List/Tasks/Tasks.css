@@ -48,8 +48,18 @@
   cursor: pointer;
   font-size: 25px;
 }
+.task-order {
+  position: absolute;
+  top: 15px;
+  right: 40px;
+  display: none;
+  transition: opacity 0.15s;
+  cursor: pointer;
+  font-size: 15px;
+}
 
-.task-body:hover .task-tooltip {
+.task-body:hover .task-tooltip,
+.task-body:hover .task-order {
   display: block;
 }
 

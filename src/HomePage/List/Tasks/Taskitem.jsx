@@ -8,6 +8,7 @@ export function Taskitem({
   updateTask,
   completeTask,
   state,
+  order,
 }) {
   const [taskState, setTaskState] = useState("view");
   const [textValue, setTextValue] = useState("");
@@ -36,6 +37,7 @@ export function Taskitem({
     return (
       <div key={taskId} className="task-body">
         <div className="task-name">{taskName}</div>
+        <div className="task-order">{order + 1}</div>
         <div
           className="task-tooltip"
           onClick={() => {

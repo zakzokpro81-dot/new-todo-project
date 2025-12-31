@@ -21,6 +21,7 @@ export function Tasks({ tasks, deleteTask, updateTask, listId, completeTask }) {
             listId={listId}
             completeTask={completeTask}
             state={task.state}
+            order={task.order}
           />
         );
       })}
