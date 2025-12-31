@@ -38,10 +38,10 @@ export function Body({
                   deleteList(listId[0]);
                 }}
               >
-                ok
+                Ok
               </button>
               <button className="cancel" onClick={changeIsDelete}>
-                cancel
+                Cancel
               </button>
             </div>
           </div>
