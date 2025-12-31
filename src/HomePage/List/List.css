@@ -1,0 +1,13 @@
+.list-container {
+    background-color: #1A3D2E;
+    display: flex;
+    border-radius: 20px;
+    margin: 5px;
+    width: 100%;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    
+}

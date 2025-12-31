@@ -1,0 +1,117 @@
+.tasks-container {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.tasks-container:hover {
+  overflow-y: auto;
+}
+.task-body {
+  background-color: #2d5a45;
+  min-height: 100px;
+  padding: 12px;
+  border: 1px solid #27ae60;
+  border-radius: 20px;
+  flex-shrink: 0;
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.task-input {
+  background-color: #2d5a45;
+  height: 100px;
+  padding: 12px;
+  border: 1px solid #27ae60;
+  border-radius: 20px;
+  flex-shrink: 0;
+  position: relative;
+  outline: none;
+  color: aliceblue;
+}
+
+.task-tooltip {
+  position: absolute;
+  top: 3px;
+  right: 15px;
+  display: none;
+  transition: opacity 0.15s;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.task-body:hover .task-tooltip {
+  display: block;
+}
+
+.options-list {
+  background-color: #2d5a45;
+  border-radius: 12px;
+  padding: 6px 0;
+  width: 160px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: sans-serif;
+  position: absolute;
+
+  top: 5px;
+  right: -50px;
+  z-index: 150;
+}
+
+.options-list > div {
+  padding: 10px 14px;
+  cursor: pointer;
+  color: #ecf0f1;
+  font-size: 14px;
+  border-left: 3px solid transparent;
+  transition: background-color 0.25s ease, transform 0.2s ease,
+    border-color 0.25s ease, padding-left 0.25s ease;
+}
+
+.options-list > div:hover {
+  background-color: rgba(39, 174, 96, 0.15);
+  border-left: 3px solid #27ae60;
+  transform: translateX(4px);
+  padding-left: 18px;
+}
+
+.delete:hover {
+  color: #ff7675;
+}
+
+.edite:hover {
+  color: #74b9ff;
+}
+
+.complete:hover {
+  color: #55efc4;
+}
+
+.task-name {
+  height: 100%;
+  width: 100%;
+  white-space: pre-wrap;
+}
+
+.task-name::first-line {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #27ae60;
+}
+
+.task-complete {
+  position: absolute;
+  top: 75px;
+}
