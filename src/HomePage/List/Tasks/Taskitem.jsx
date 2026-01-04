@@ -7,7 +7,7 @@ export function Taskitem({
   listId,
   updateTask,
   completeTask,
-  state,
+  isCompleted,
   order,
 }) {
   const [taskState, setTaskState] = useState("view");
@@ -35,7 +35,7 @@ export function Taskitem({
   }
   if (taskState === "view") {
     return (
-      <div key={taskId} className="task-body">
+      <div draggable key={taskId} className="task-body">
         <div className="task-name">{taskName}</div>
         <div className="task-order">{order + 1}</div>
         <div
@@ -46,7 +46,7 @@ export function Taskitem({
         >
           ...
         </div>
-        {state && <div className="task-complete"> ✓ complete</div>}
+        {isCompleted && <div className="task-complete"> ✓ complete</div>}
       </div>
     );
   }
@@ -62,7 +62,7 @@ export function Taskitem({
         >
           {taskName}
         </div>
-        {state && <div className="task-complete"> ✓ complete</div>}
+        {isCompleted && <div className="task-complete"> ✓ complete</div>}
         <div className="options-list">
           <div
             className="delete"

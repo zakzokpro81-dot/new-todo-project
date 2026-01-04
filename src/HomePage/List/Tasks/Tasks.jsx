@@ -1,8 +1,17 @@
 import "./Tasks.css";
 import { Taskitem } from "./Taskitem";
-import { useEffect, useRef } from "react";
-export function Tasks({ tasks, deleteTask, updateTask, listId, completeTask }) {
+import { useEffect, useRef, useState } from "react";
+export function Tasks({
+  tasks,
+  deleteTask,
+  updateTask,
+  listId,
+  completeTask,
+  addTask,
+}) {
+  // const [draggableTask, setDraggableTask] = useState("");
   const scrollRef = useRef(null);
+
   useEffect(() => {
     if (scrollRef) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -20,7 +29,7 @@ export function Tasks({ tasks, deleteTask, updateTask, listId, completeTask }) {
             updateTask={updateTask}
             listId={listId}
             completeTask={completeTask}
-            state={task.state}
+            isCompleted={task.isCompleted}
             order={task.order}
           />
         );

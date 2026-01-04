@@ -28,6 +28,7 @@ export function List({
         listId={listId}
         updateTask={updateTask}
         completeTask={completeTask}
+        addTask={addTask}
       />
 
       <ListFooter tasks={tasks} addTask={addTask} listId={listId} />

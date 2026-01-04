@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 
 import "./ListHeader.css";
 export function ListHeader({ listId, setIsDelete, setlistId, tasks }) {
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState(true);
   const [titleValue, setTitleValue] = useState("Title");
   const myref = useRef(null);
   useEffect(() => {
@@ -42,6 +42,13 @@ export function ListHeader({ listId, setIsDelete, setlistId, tasks }) {
               ref={myref}
               type="text"
               onChange={changeTitleName}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  {
+                    handleBlur();
+                  }
+                }
+              }}
               onBlur={handleBlur}
               value={titleValue}
             ></input>
