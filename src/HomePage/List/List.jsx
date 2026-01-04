@@ -24,10 +24,10 @@ export function List({
       />
       <Tasks
         tasks={tasks}
-        deleteTask={deleteTask}
+        onTaskDeleted={deleteTask}
         listId={listId}
-        updateTask={updateTask}
-        completeTask={completeTask}
+        onTaskUpdated={updateTask}
+        onTaskCompleted={completeTask}
       />
 
       <ListFooter tasks={tasks} addTask={addTask} listId={listId} />
