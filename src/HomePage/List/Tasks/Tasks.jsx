@@ -1,13 +1,15 @@
 import "./Tasks.css";
 import { Taskitem } from "./Taskitem";
 import { useEffect, useRef } from "react";
-export function Tasks({ tasks, deleteTask, updateTask, listId, completeTask }) {
+export function Tasks({ tasks, onTaskDeleted, onTaskUpdated, listId, onTaskCompleted }) {
   const scrollRef = useRef(null);
   useEffect(() => {
     if (scrollRef) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [tasks.length]);
+
+  // I recommend to handle task's callbacks here instead to pass them to the parent component of this component.
 
   return (
     <div ref={scrollRef} key={"taskContainerKey"} className="tasks-container">
@@ -16,11 +18,11 @@ export function Tasks({ tasks, deleteTask, updateTask, listId, completeTask }) {
           <Taskitem
             taskId={task.id}
             taskName={task.name}
-            deleteTask={deleteTask}
-            updateTask={updateTask}
             listId={listId}
-            completeTask={completeTask}
-            state={task.state}
+            isComplete={task.state}
+            onTaskDeleted={onTaskDeleted}
+            onTaskUpdated={onTaskUpdated}
+            onTaskCompleted={onTaskCompleted}
           />
         );
       })}

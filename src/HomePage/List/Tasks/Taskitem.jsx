@@ -3,11 +3,11 @@ import { useState, useRef, useEffect } from "react";
 export function Taskitem({
   taskId,
   taskName,
-  deleteTask,
+  isComplete,
   listId,
-  updateTask,
-  completeTask,
-  state,
+  onTaskDeleted,
+  onTaskUpdated,
+  onTaskCompleted,
 }) {
   const [taskState, setTaskState] = useState("view");
   const [textValue, setTextValue] = useState("");
@@ -28,7 +28,7 @@ export function Taskitem({
     if (!textValue) {
       setTaskState("taskRequier");
     } else {
-      updateTask(listId, taskId, value);
+      onTaskUpdated(listId, taskId, value);
       setTaskState("view");
     }
   }
@@ -44,7 +44,7 @@ export function Taskitem({
         >
           ...
         </div>
-        {state && <div className="task-complete"> ✓ complete</div>}
+        {isComplete && <div className="task-complete"> ✓ complete</div>}
       </div>
     );
   }
@@ -60,7 +60,7 @@ export function Taskitem({
         >
           {taskName}
         </div>
-        {state && <div className="task-complete"> ✓ complete</div>}
+        {isComplete && <div className="task-complete"> ✓ complete</div>}
         <div className="options-list">
           <div
             className="delete"
@@ -82,7 +82,7 @@ export function Taskitem({
           <div
             className="complete"
             onClick={() => {
-              completeTask(listId, taskId, true);
+              onTaskCompleted(listId, taskId, true);
               setTaskState("view");
             }}
           >
@@ -117,7 +117,7 @@ export function Taskitem({
           <div
             className="ok"
             onClick={() => {
-              deleteTask(listId, taskId);
+              onTaskDeleted(listId, taskId);
               setTaskState("view");
             }}
           >
