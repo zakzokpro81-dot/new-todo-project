@@ -12,7 +12,11 @@ export function ListFooter({ addTask, listId, tasks }) {
     }
   }, [isClick]);
   function addNewTask() {
-    if (!taskTitle) {
+    const lines = taskTitle.split("\n");
+    const firstLine = lines[0]?.trim();
+    const secondLine = lines[1]?.trim();
+
+    if (!firstLine || !secondLine) {
       setNoTask("No task name");
     } else {
       let newTask = {
@@ -45,6 +49,11 @@ export function ListFooter({ addTask, listId, tasks }) {
             ref={myRef}
             onChange={changeTaskTitle}
             type="text"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                addNewTask();
+              }
+            }}
             value={taskTitle}
           ></textarea>
           <div>{noTask}</div>
