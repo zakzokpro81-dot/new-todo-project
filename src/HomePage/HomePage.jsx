@@ -1,12 +1,23 @@
 import { Body } from "./Body/Body";
 import { Header } from "./Header/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./HomePage.css";
 
 export function HomePage() {
   const [search, setSearch] = useState("");
-  const [lists, setLists] = useState([]);
   const [isDelete, setIsDelete] = useState(false);
+  const [lists, setLists] = useState(() => {
+    try {
+      const saved = localStorage.getItem("lists");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("lists", JSON.stringify(lists));
+  }, [lists]);
 
   const filteredLists = lists
     .map((list) => {
