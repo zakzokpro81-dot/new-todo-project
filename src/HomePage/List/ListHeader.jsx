@@ -24,6 +24,24 @@ export function ListHeader({ listId, setIsDelete, setlistId, tasks }) {
 
   function changeTitleName(event) {
     setTitleValue(event.target.value);
+
+    fetch(`http://zakaria.emadinitiative.org/lists/${listId}`, {
+      method: "PUT",
+      headers: {
+        "content-Type": "application/json",
+        Authorization: "Bearer changeme-secret-token",
+      },
+      body: JSON.stringify({
+        title: titleValue,
+      }),
+    })
+      .then((r) => r.json())
+      .then((d) => {
+        console.log(d);
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
   }
   function editTitle() {
     setIsEdit((prev) => !prev);

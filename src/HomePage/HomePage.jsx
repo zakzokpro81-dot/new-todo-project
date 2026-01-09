@@ -34,14 +34,46 @@ export function HomePage() {
   const listsToShow = search ? filteredLists : lists;
 
   function addNewList() {
-    const newList = [...lists, { id: crypto.randomUUID(), tasks: [] }];
-    setLists(newList);
+    fetch("http://zakaria.emadinitiative.org/lists", {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+        Authorization: "Bearer changeme-secret-token",
+      },
+      body: JSON.stringify({
+        title: "hello from zak",
+      }),
+    })
+      .then((r) => r.json())
+      .then((d) => {
+        const newList = [...lists, { id: d.id, tasks: [] }];
+        setLists(newList);
+        console.log(d.id);
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
   }
 
   function deleteList(listId) {
     const newList = lists.filter((list) => list.id !== listId);
     setLists(newList);
     setIsDelete((prev) => !prev);
+
+    fetch(`http://zakaria.emadinitiative.org/lists/${listId}`, {
+      method: "DELETE",
+      headers: {
+        "content-Type": "application/json",
+        Authorization: "Bearer changeme-secret-token",
+      },
+    })
+      .then((r) => r.json())
+      .then((d) => {
+        console.log(d);
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
   }
 
   function addTask(listId, newTask) {
