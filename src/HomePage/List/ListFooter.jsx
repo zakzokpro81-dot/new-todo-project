@@ -19,13 +19,40 @@ export function ListFooter({ addTask, listId, tasks }) {
     if (!firstLine || !secondLine) {
       setNoTask("No task name");
     } else {
-      let newTask = {
-        id: crypto.randomUUID(),
+
+       fetch(`http://zakaria.emadinitiative.org/tasks`, {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+        Authorization: "Bearer changeme-secret-token",
+      },
+      body: JSON.stringify({
+
+         "list_id": listId,
+     "title": taskTitle,
+     "is_complete": false
+      }),
+    })
+      .then((r) => r.json())
+      .then((d) => {
+
+        let newTask = {
+        id: d.id,
         name: taskTitle,
         isCompleted: false,
         order: tasks.length,
       };
       addTask(listId, newTask);
+
+        console.log(d);
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+
+
+      
+      
       setTaskTitle("");
       setIsClick((prev) => !prev);
       setNoTask("");

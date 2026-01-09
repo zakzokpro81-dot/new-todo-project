@@ -89,6 +89,26 @@ export function HomePage() {
     );
   }
   function deleteTask(lId, tId) {
+
+    fetch(`http://zakaria.emadinitiative.org/tasks/${tId}`, {
+      method: "DELETE",
+      headers: {
+        "content-Type": "application/json",
+        Authorization: "Bearer changeme-secret-token",
+      },
+    })
+      .then((r) => r.json())
+      .then((d) => {
+        console.log(d);
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+
+
+
+
+
     setLists((prevLists) =>
       prevLists.map((list) =>
         list.id === lId
@@ -102,6 +122,32 @@ export function HomePage() {
   }
 
   function updateTask(listId, taskId, updatedName) {
+
+     fetch(`http://zakaria.emadinitiative.org/tasks/${taskId}`, {
+      method: "PUT",
+      headers: {
+        "content-Type": "application/json",
+        Authorization: "Bearer changeme-secret-token",
+      },
+      body: JSON.stringify({
+     "title": updatedName,
+     "is_complete": false
+      }),
+
+    })
+      .then((r) => r.json())
+      .then((d) => {
+
+        
+        console.log(d);
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+
+
+
+
     setLists((prevLists) =>
       prevLists.map((list) =>
         list.id === listId
